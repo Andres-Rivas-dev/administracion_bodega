@@ -101,7 +101,8 @@ class ProductosController extends Controller
         $validator = Validator::make($request->all(), [
             'id_producto'             => 'required',
             'id_tipo_transaccion'     => 'required|integer',
-            'cantidad'                => 'required|integer'
+            'cantidad'                => 'required|integer',
+            'upc'                     => 'integer|exists:transacciones_productos,UPC|required_if:id_tipo_transaccion,2,3,4'
         ]);
 
         if ($validator->fails()) {
@@ -120,6 +121,9 @@ class ProductosController extends Controller
             if($request->id_tipo_transaccion == 1){
                 $upc = calculoUpc::generateUPC();
                 $prod->UPC                 = $upc;
+            }else{
+                $prod_where   = TransaccionesProductos::where('UPC', $request->upc)->first();
+                $prod->UPC                 = $prod_where->UPC;
             }
             $prod->accion              = $request->id_tipo_transaccion; //llave foranea de tipo_transacciones
             $prod->save();
