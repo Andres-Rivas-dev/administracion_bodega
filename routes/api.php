@@ -19,6 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//para registar un usuario autenticado con JWT
+
 Route::group([
 
     'middleware' => 'api',
@@ -34,9 +36,17 @@ Route::group([
     Route::post('register', 'App\Http\Controllers\AuthController@register');
 });
 
-Route::get('visitantes/get', 'App\Http\Controllers\VisitantesController@getVisitantes');
-Route::post('visitantes/store', 'App\Http\Controllers\VisitantesController@create');
-
-Route::post('FPGetDiasBloqueados', 'App\Http\Controllers\VisitantesController@FPGetDiasBloqueados');
-
+//menu dinamico para sidebar
 Route::get('menu/get', 'App\Http\Controllers\MenuController@getMenu');
+
+//obtener todos los productos
+Route::get('productos/getall', 'App\Http\Controllers\ProductosController@getAllProductos');
+
+//registrar un nuevo tipo de producto
+Route::post('productos/registrar', 'App\Http\Controllers\ProductosController@registrarProducto');
+
+//registrar un nuevo tipo de proveedor
+Route::post('proveedor/registrar', 'App\Http\Controllers\ProductosController@registrarProveedor');
+
+//registrar un movimiento en inventario
+Route::post('productos/transaccion', 'App\Http\Controllers\ProductosController@transaccionesInventario');
