@@ -242,7 +242,7 @@
 			"response": []
 		},
 		{
-			"name": "registar accion bodega",
+			"name": "registrar accion bodega",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -276,6 +276,39 @@
 						"api",
 						"productos",
 						"transaccion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/productos/getByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"producto\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/productos/getByName",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"productos",
+						"getByName"
 					]
 				}
 			},
