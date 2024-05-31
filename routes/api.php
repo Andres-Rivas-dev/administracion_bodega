@@ -42,6 +42,9 @@ Route::get('menu/get', 'App\Http\Controllers\MenuController@getMenu');
 //obtener todos los productos
 Route::get('productos/getall', 'App\Http\Controllers\ProductosController@getAllProductos');
 
+//obtener todos los productos
+Route::get('productos/getByName', 'App\Http\Controllers\ProductosController@getProductosByName');
+
 //registrar un nuevo tipo de producto
 Route::post('productos/registrar', 'App\Http\Controllers\ProductosController@registrarProducto');
 

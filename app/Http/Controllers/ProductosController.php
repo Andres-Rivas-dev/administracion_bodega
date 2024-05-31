@@ -18,7 +18,27 @@ class ProductosController extends Controller
 
         $get = Productos::get();
 
-        return $get;
+        return response()->json($get, 200);        
+    }
+
+    public function getProductosByName(Request $request){
+
+        if (empty($request)) {
+            return  ['message' => 'Datos vacios'];
+        }
+
+        $validator = Validator::make($request->all(), [
+            'nombre'                  => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $get = Productos::where('nombre', 'LIKE', '%' . $request->nombre . '%')->get();
+
+        return response()->json($get, 200);        
+
     }
 
     public function registrarProducto(Request $request){
